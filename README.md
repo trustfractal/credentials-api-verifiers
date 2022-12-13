@@ -45,7 +45,7 @@ GET https://credentials.fractal.id/
   <summary>👁️ <strong>See example <code>(Solidity)</code></strong></summary>
 
 ```solidity
-import "github.com/trustfractal/credentials-api-verifiers/CredentialVerifier.sol";
+import "github.com/trustfractal/credentials-api-verifiers/blob/main/CredentialVerifier.sol";
 
 contract Main is CredentialVerifier {
     function main(
