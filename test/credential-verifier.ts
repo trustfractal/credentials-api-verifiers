@@ -10,11 +10,11 @@ describe("CredentialVerifier basics", function () {
   beforeEach(async () => {
     ([owner, fractal, user] = await ethers.getSigners());
     const ImplExample = await ethers.getContractFactory("ImplExample");
-    credentialVerifier = await ImplExample.connect(user).deploy();
+    credentialVerifier = await ImplExample.connect(user).deploy(fractal.address);
     await credentialVerifier.deployed();
   });
 
-  it.skip("To be verified with the right credentials", async function () {
+  it("To be verified with the right credentials", async function () {
     const credentials = {...defaultCredential};
     credentials.signature = await signCredentials(credentials, fractal, user)
     const tx = await credentialVerifier.connect(user).test(credentials)
@@ -52,12 +52,11 @@ describe("CredentialVerifier basics", function () {
 
   it("To fail if used twice", async function () {
     const credentials = {...defaultCredential};
-
-    credentials.signature = await signCredentials(credentials, fractal, owner)
+    credentials.signature = await signCredentials(credentials, fractal, user)
     const tx = await credentialVerifier.connect(user).test(credentials)
     await tx.wait()
     await expect(
-      await credentialVerifier.connect(user).test(credentials)
-    ).to.rejectedWith("CredentialVerifier: Signature has already been used.");
+      credentialVerifier.connect(user).test(credentials)
+    ).to.rejectedWith("CredentialVerifier: Used hash.");
   });
 });

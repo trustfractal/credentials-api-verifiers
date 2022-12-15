@@ -19,11 +19,10 @@ export async function signCredentials(
       ethers.utils.keccak256(
         ethers.utils.solidityPack(
         [
-          "string",
           "string"
         ],
         [
-          user.address.toLowerCase(),
+          user.address.toLowerCase()+
           ";" +
           credential.fractalId +
           ";" +

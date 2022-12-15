@@ -10,7 +10,11 @@ abstract contract CredentialVerifier {
 
     mapping(bytes32 => bool) private _usedHashs;
 
-    address public FRACTAL_SIGNER;
+    address immutable public FRACTAL_SIGNER;
+
+    constructor(address fractalSigner) {
+        FRACTAL_SIGNER = fractalSigner;
+    }
 
     modifier requiresCredential(Credential.Data calldata _cred) {
         _requiresCredential(_cred);
