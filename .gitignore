@@ -1,0 +1,32 @@
+.deps
+.openzeppelin
+node_modules
+contracts/artifacts
+contracts/utils/artifacts
+contracts/CrowdSale/artifacts
+contracts/Phygital/artifacts
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+# mac
+.DS_Store
